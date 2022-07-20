@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- We import arjs version without NFT but with marker + location based support -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!-- SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
+    <link href="./style.css" rel="stylesheet" />
+    <script src="./js/button.js"></script>
+  </head>
+
+  <body>
+    <a-scene
+      id="main-scene"
+      vr-mode-ui="enabled: false"
+      embedded
+      arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;debugUIEnabled: false;"
+      gesture-detector
+    >
+      <a-entity camera></a-entity>
+
+      <a-assets>
+        <a-asset-item src="./assets/toys/scene.gltf" id="toy1"></a-asset-item>
+      </a-assets>
+      <a-marker
+        type="pattern"
+        id="toy2"
+        url="./assets/marker/pattern-download.patt"
+        cursor="rayOrigin: mouse"
+        createbuttons markerhandler
+      >
+        <a-entity
+          id="toymodel"
+          gltf-model="#toy1"
+          position="-1 0 0.5"
+          scale="0.1 0.1 0.1"
+          rotation="-90 0 0"
+          animation-mixer
+          gesture-handler
+        ></a-entity>
+        <a-plane position="0 0 0" width="1.5" height="1.5" rotation="-90 0 0">
+            <a-plane position="0 0.89 0.02" width="1.49" height="0.3" rotation="0 0 0" color="#F0C30F">
+               <a-entity position="0 0 0.1" rotation="0 0 0" text="font:monoid;value:toys;color:black;width: 1.8;height:1;align:center;"> 
+    
+               </a-plane> 
+               <a-entity position="0 0 0.1" rotation="0 0 0" text="color: black; align: center; width: 2; font: monoid; value: About this item. Drive it in the real water with Remote Control. Amazing product with cool functionality; Function Includes: Forwards, Backward Rotating"> 
+    
+               </a-entity>
+               </a-plane>
+    
+      </a-marker>
+    </a-scene>
+    <div id="button-div"></div>
+  </body>
+</html>
